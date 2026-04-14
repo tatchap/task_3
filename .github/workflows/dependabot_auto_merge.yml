@@ -1,0 +1,12 @@
+on:
+  pull_request_target:
+
+jobs:
+  c:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - run: gh pr merge ${{ github.event.pull_request.number }}
